@@ -6,3 +6,4 @@ This project was generated automatically using the `iac-scaffolder` CLI tool.
 - Azure Terraform module
 - Pipeline folder for CI/CD YAML
 - Diagrams folder for architecture
+#test deploy
