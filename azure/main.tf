@@ -9,8 +9,18 @@ resource "azurerm_storage_account" "secure_storage" {
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  allow_blob_public_access = false
-  enable_https_traffic_only = true
+  https_traffic_only_enabled = true
+
+  blob_properties {
+  delete_retention_policy {
+    days = 1
+  }
+
+  container_delete_retention_policy {
+    days = 1
+  }
+  # No direct allow_blob_public_access here anymore
+  }
 
   tags = {
     Environment = "dev"
