@@ -1,5 +1,9 @@
+resource "random_id" "suffix" {
+  byte_length = 3   # Generates 6 hex characters
+}
+
 resource "aws_s3_bucket" "secure_bucket" {
-  bucket = "${var.bucket_prefix}-${random_id.suffix.dec}"
+  bucket = "${var.bucket_prefix}-${random_id.suffix.hex}"
 
   tags = {
     Environment = "dev"
@@ -33,9 +37,3 @@ resource "aws_s3_bucket_public_access_block" "block" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
-
-
-resource "random_id" "suffix" {
-  byte_length = 3   # 3 bytes → 6 hex characters
-}
-
