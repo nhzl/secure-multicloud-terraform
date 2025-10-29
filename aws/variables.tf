@@ -3,6 +3,11 @@ variable "bucket_name" {
   description = "Name of the S3 bucket"
 }
 
+variable "bucket_prefix" {
+  type        = string
+  description = "Base prefix for bucket name"
+}
+
 variable "aws_region" {
   type        = string
   default     = "us-east-1"
