@@ -10,6 +10,7 @@ Multi-cloud Terraform scaffold using modules and secure defaults.
 <4–6 bullets describing components. Hint: which services in AWS vs Azure, use of modules, Terraform backend location, how the scaffolder is used.>
 
 ## Folder Structure
+```plaintext
 secure-multicloud-terraform/
 ├── README.md
 ├── .gitignore
@@ -84,7 +85,7 @@ secure-multicloud-terraform/
 - <Feature 3> (future)
 - <Feature 4> (future)
 - <Feature 5> (future)
-
+```
 ---
 
 # Getting Started
