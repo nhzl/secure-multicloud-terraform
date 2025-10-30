@@ -42,6 +42,7 @@ jobs:
         run: terraform plan -out=tfplan
         env:
           TF_VAR_bucket_prefix: ${{ secrets.AWS_BUCKET_NAME }}
+          TF_VAR_vpc_prefix: ${{ secrets.AWS_BUCKET_NAME }}
 
       - name: Terraform Apply (main only)
         if: github.ref == 'refs/heads/master'

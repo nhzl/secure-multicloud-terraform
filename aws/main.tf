@@ -12,3 +12,20 @@ module "s3" {
     Project     = var.project
   }
 }
+
+module "vpc" {
+  source = "./modules/vpc"
+
+  vpc_prefix  = var.vpc_prefix
+  environment = var.environment
+  project     = var.project
+
+  ipv4_netmask_length = 20
+  cidr_pool_cidr      = "172.20.0.0/16"
+
+  tags = {
+    Environment = var.environment
+    Project     = var.project
+  }
+
+}
