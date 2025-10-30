@@ -33,7 +33,7 @@ I’m also using this to get more reps with multi-cloud layouts, proper folder s
 secure-multicloud-terraform/
 ├── README.md
 ├── .gitignore
-├── LICENSE              (optional) (future)
+├── LICENSE              (future)
 ├── examples/
 │   └── basic-usage/     (optional tfvars + example root) (future)
 │       ├── README.md
@@ -46,13 +46,16 @@ secure-multicloud-terraform/
 │   ├── outputs.tf
 │   ├── versions.tf
 │   ├── provider.tf
-│   ├── terraform.tfvars.example
+│   ├── terraform.tfvars.example (future)
 │   └── modules/
 │       ├── s3/
 │       │   ├── main.tf
 │       │   ├── variables.tf
 │       │   └── outputs.tf
-│       ├── vpc/               (future)
+│       ├── vpc/
+│       │   ├── main.tf
+│       │   ├── variables.tf
+│       │   └── outputs.tf
 │       ├── kms/               (future)
 │       ├── iam/               (future)
 │       ├── cloudtrail/        (future)
@@ -66,7 +69,7 @@ secure-multicloud-terraform/
 │   ├── provider.tf
 │   ├── terraform.tfvars.example
 │   └── modules/
-│       ├── storage/
+│       ├── storage/           (future)
 │       │   ├── main.tf
 │       │   ├── variables.tf
 │       │   └── outputs.tf
@@ -79,8 +82,8 @@ secure-multicloud-terraform/
 ├── pipelines/
 │   ├── github-actions/
 │   │   ├── terraform-plan-apply.yml
-│   │   └── terraform-destroy.yml
-│   └── azure-devops/
+│   │   └── terraform-destroy.yml (future)
+│   └── azure-devops/ (future)
 │       ├── terraform-pipeline.yml
 │       └── templates/
 │           ├── install.yml
@@ -93,17 +96,14 @@ secure-multicloud-terraform/
 │   └── high-level-overview.mmd (future)
 │
 └── scripts/
-    ├── validate.sh
-    ├── plan.sh
-    ├── apply.sh
-    └── destroy.sh
+    ├── validate.sh (future)
+    ├── plan.sh (future)
+    ├── apply.sh (future)
+    └── destroy.sh (future)
 
 ## Features
-- <Feature 1> (future)
-- <Feature 2> (future)
-- <Feature 3> (future)
-- <Feature 4> (future)
-- <Feature 5> (future)
+- Added AWS VPC module - 10/29/2025
+- (future)
 ```
 ---
 
@@ -137,14 +137,17 @@ AWS and Azure have separate root modules.
 # Modules
 
 ## AWS Modules
-- s3 — Example s3 bucket
+- s3 — Standard s3 bucket. Will eventually add functionality to pass parameters.
+- vpc - Standard /20 vpc with CIDR pool of 172.20.0.0/16, Will eventually add functionality to pass parameters.
 
 ## Azure Modules
-#- storage — (future)Purpose and key options:
+#- storage — (future)
 
 ---
 
 # Learning Notes
+• You will need to write your own root main.tf to use this.
+
 • When troubleshooting access issues, rotate the SP secret. It forces the provider to re-check permissions and usually makes the real problem obvious.
 
 • Use modules for anything custom or anything that will grow. Keeps the root clean and the code easier to maintain.
@@ -169,12 +172,11 @@ AWS and Azure have separate root modules.
 # Roadmap
 - [ ] Continue building out aws and azure resources
 - [ ] Custom resources for different use cases
-- [ ] <Next item>
 
 ---
 
 # Contributing
-<Optional: how to propose changes or open issues.>
+Unlikely
 
 # Author
-<Your name or GitHub handle>
+NHZL
