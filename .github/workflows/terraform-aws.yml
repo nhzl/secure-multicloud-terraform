@@ -3,7 +3,7 @@ name: terraform-aws
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
     paths:
       - "aws/**"
       - ".github/workflows/terraform-aws.yml"
@@ -42,7 +42,7 @@ jobs:
         run: terraform plan -out=tfplan
         env:
           TF_VAR_bucket_prefix: ${{ secrets.AWS_BUCKET_NAME }}
-          TF_VAR_vpc_prefix: ${{ secrets.AWS_BUCKET_NAME }}
+          TF_VAR_vpc_prefix: ${{ secrets.AWS_VPC_NAME }}
 
       - name: Terraform Apply (main only)
         if: github.ref == 'refs/heads/master'

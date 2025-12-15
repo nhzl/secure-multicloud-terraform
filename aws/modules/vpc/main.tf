@@ -2,34 +2,42 @@ resource "random_id" "suffix" {
   byte_length = 2
 }
 
-resource "aws_vpc_ipam" "test" {
+data "aws_region" "current" {}
+
+
+#Create IPAM
+resource "aws_vpc_ipam" "main" {
   operating_regions {
-    region_name = data.aws_region.current.region
+    region_name = "data.aws_region.current.region"
   }
+
 }
 
-resource "aws_vpc_ipam_pool" "test" {
+#Create IPAM Pool
+resource "aws_vpc_ipam_pool" "main" {
   address_family = "ipv4"
-  ipam_scope_id  = aws_vpc_ipam.test.private_default_scope_id
+  ipam_scope_id  = aws_vpc_ipam.main.private_default_scope_id
   locale         = data.aws_region.current.region
 }
 
-resource "aws_vpc_ipam_pool_cidr" "test" {
-  ipam_pool_id = aws_vpc_ipam_pool.test.id
-  cidr         = "172.20.0.0/16"
+#Assign CIDR from IPAM
+resource "aws_vpc_ipam_pool_cidr" "main" {
+  ipam_pool_id = aws_vpc_ipam_pool.main.id
+  cidr         = var.cidr_pool_cidr
+
 }
 
+#Create VPC from IPAM
 resource "aws_vpc" "main" {
-  ipv4_ipam_pool_id   = aws_vpc_ipam_pool.primary_pool.id
-  ipv4_netmask_length = 20
+  ipv4_ipam_pool_id   = aws_vpc_ipam_pool.main.id
+  ipv4_netmask_length = var.ipv4_netmask_length
 
-  depends_on = [
-    aws_vpc_ipam_pool_cidr.primary_pool_cidr
-  ]
-
-  tags = {
+  depends_on = [aws_vpc_ipam_pool_cidr.main]
+  tags = merge({
     Name        = "${var.vpc_prefix}-vpc-${random_id.suffix.hex}"
-    Environment = var.env
-    Project     = "secure-multicloud"
-  }
+    Environment = var.environment
+    Project     = var.project
+  }, var.tags)
+
 }
+

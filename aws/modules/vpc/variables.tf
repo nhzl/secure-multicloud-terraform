@@ -23,8 +23,3 @@ variable "tags" {
   type    = map(string)
   default = {}
 }
-
-variable "enable_nat" {
-  type    = bool
-  default = false
-}

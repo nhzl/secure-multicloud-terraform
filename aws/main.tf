@@ -22,7 +22,6 @@ module "vpc" {
 
   ipv4_netmask_length = var.ipv4_netmask_length
   cidr_pool_cidr      = var.cidr_pool_cidr
-  enable_nat          = var.enable_nat
 
   tags = {
     Environment = var.environment
