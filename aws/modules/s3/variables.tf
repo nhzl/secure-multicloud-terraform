@@ -7,9 +7,6 @@ variable "force_destroy" {
   default = false ### optional safety off by default
 }
 
-resource "random_id" "suffix" {
-  byte_length = 2
-}
 
 variable "versioning_enabled" {
   type    = bool

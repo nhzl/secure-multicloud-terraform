@@ -1,7 +1,11 @@
-output "bucket_name" {
-  value = aws_s3_bucket.secure_bucket.bucket
+output "vpc_name" {
+  value = aws_s3_bucket.main.id
 }
 
-output "bucket_arn" {
-  value = aws_s3_bucket.secure_bucket.arn
+output "vpc_arn" {
+  value = aws_s3_bucket.main.arn
+}
+
+output "vpc_cidr_block" {
+  value = aws_vpc.main.cidr_block
 }

@@ -1,28 +1,30 @@
-variable "bucket_prefix" {
-  type = string ### e.g. "secure-multicloud"
+variable "vpc_prefix" {
+  type = string
 }
 
-variable "force_destroy" {
-  type    = bool
-  default = false ### optional safety off by default
+variable "environment" {
+  type = string
 }
 
-variable "versioning_enabled" {
-  type    = bool
-  default = true ### best practice: on
+variable "project" {
+  type = string
 }
 
-variable "sse_algorithm" {
+variable "ipv4_netmask_length" {
+  type = number
+}
+
+variable "cidr_pool_cidr" {
   type    = string
-  default = "AES256" ### or "aws:kms"
-}
-
-variable "kms_key_id" {
-  type    = string
-  default = null ### optional KMS support
+  default = "172.20.0.0/16"
 }
 
 variable "tags" {
   type    = map(string)
-  default = {} ### user-provided tags
+  default = {}
+}
+
+variable "enable_nat" {
+  type    = bool
+  default = false
 }

@@ -20,8 +20,9 @@ module "vpc" {
   environment = var.environment
   project     = var.project
 
-  ipv4_netmask_length = 20
-  cidr_pool_cidr      = "172.20.0.0/16"
+  ipv4_netmask_length = var.ipv4_netmask_length
+  cidr_pool_cidr      = var.cidr_pool_cidr
+  enable_nat          = var.enable_nat
 
   tags = {
     Environment = var.environment
